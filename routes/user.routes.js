@@ -9,7 +9,7 @@ const userController = Router();
 
 
 userController.post("/signup", (req, res) => {
-    const {email, bookingId, age} = req.body;
+    const {email, bookingId} = req.body;
 
     bcrypt.hash(bookingId, 5, async function(err, hash) {
         if(err){
@@ -18,7 +18,7 @@ userController.post("/signup", (req, res) => {
         const user = new UserModel({
             email,
             bookingId : hash,
-            age
+            
         })
         try{
             await user.save()
